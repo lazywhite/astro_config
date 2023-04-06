@@ -1,3 +1,5 @@
+vim.cmd('source ~/.vimrc')
+
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -33,7 +35,10 @@ return {
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
+          "go",
+          "rust",
+          "python",
+          "lua",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -81,5 +86,16 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+    vim.api.nvim_create_autocmd("VimEnter", {
+      command = "set nornu",
+    })
+    vim.api.nvim_create_autocmd("BufEnter", {
+      command = "set nornu",
+    })
+    vim.filetype.add {
+      extension = {
+        flux = "flux",
+      },
+    }
   end,
 }
